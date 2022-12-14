@@ -1,7 +1,14 @@
 import React from "react";
 import Item from "./Item";
+import { useState } from "react"
 
 function ShoppingList({ items }) {
+  const [cart, setCart] = useState([]);
+
+  const itemList = items.map((item) => (
+    <Item key={item.id} name={item.name} category={item.category} setCart={setCart} id={item.id}/>
+  ))
+
   return (
     <div className="ShoppingList">
       <div className="Filter">
@@ -13,9 +20,7 @@ function ShoppingList({ items }) {
         </select>
       </div>
       <ul className="Items">
-        {items.map((item) => (
-          <Item key={item.id} name={item.name} category={item.category} />
-        ))}
+        {itemList}
       </ul>
     </div>
   );
